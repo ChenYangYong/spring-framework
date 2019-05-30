@@ -20,7 +20,18 @@
     http://www.springframework.org/schema/util
     http://www.springframework.org/schema/util/spring-util.xsd">
 
+	<beans>
+		<bean id="test" class="yancy.BeanTest" autowire="byType"  >
+			<!--<lookup-method name="" bean=""></lookup-method>-->
+			<!--<replaced-method name="" replacer=""></replaced-method>-->
+			<meta key="name" value="yancy"></meta>
+			<!--<constructor-arg index="0" value="111" ></constructor-arg>-->
+			<!--<constructor-arg index="2">-->
+				<!--<value>11</value>-->
+			<!--</constructor-arg>-->
+		</bean>
+		<alias name="test" alias="test1,test2"/>
+	</beans>
 
-	<bean id="test" class="yancy.BeanTest" autowire="byType"/>
 
 </beans>
