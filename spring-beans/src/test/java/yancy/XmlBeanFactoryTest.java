@@ -7,6 +7,7 @@ import org.springframework.core.io.ClassPathResource;
 public class XmlBeanFactoryTest {
 	public static void main(String[] args) {
 		BeanFactory bf= new XmlBeanFactory(new ClassPathResource("beanFactoryTest.xml"));
-		System.out.println(bf.getBean("test"));
+		BeanTest bean = (BeanTest)bf.getBean("test");
+		System.out.println(bean);
 	}
 }
