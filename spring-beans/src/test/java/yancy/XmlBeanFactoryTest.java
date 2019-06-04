@@ -9,5 +9,10 @@ public class XmlBeanFactoryTest {
 		BeanFactory bf= new XmlBeanFactory(new ClassPathResource("beanFactoryTest.xml"));
 		BeanTest bean = (BeanTest)bf.getBean("test");
 		System.out.println(bean);
+		Car car = (Car)bf.getBean("car");
+		System.out.println(car);
+		Object obj = bf.getBean("&car");
+		System.out.println(obj);
+
 	}
 }

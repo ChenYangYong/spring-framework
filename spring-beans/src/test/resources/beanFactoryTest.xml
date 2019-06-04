@@ -31,6 +31,7 @@
 			<!--</constructor-arg>-->
 		</bean>
 		<alias name="test" alias="test1,test2"/>
+		<bean id="car" class="yancy.CarFactoryBean" ></bean>
 	</beans>
 
 
