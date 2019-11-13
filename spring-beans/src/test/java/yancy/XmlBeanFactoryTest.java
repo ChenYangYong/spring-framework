@@ -11,14 +11,15 @@ public class XmlBeanFactoryTest {
 		BeanFactory bf= new XmlBeanFactory(new ClassPathResource("beanFactoryTest.xml"));
 		BeanTest bean = (BeanTest)bf.getBean("test");
 		System.out.println(bean);
-		BeanTest bean1 = (BeanTest)bf.getBean("test1");
-		System.out.println(bean1);
-		String[] aliases = bf.getAliases("test1");
-		System.out.println(Arrays.asList(aliases));
+//		System.out.println("&test======="+bf.getBean("&test"));
+//		BeanTest bean1 = (BeanTest)bf.getBean("test1");
+//		System.out.println(bean1);
+//		String[] aliases = bf.getAliases("test1");
+//		System.out.println(Arrays.asList(aliases));
 		Car car = (Car)bf.getBean("car");
 		System.out.println(car);
-		Object obj = bf.getBean("&car");
-		System.out.println(obj);
+//		Object obj = bf.getBean("&car");
+//		System.out.println(obj);
 
 	}
 }

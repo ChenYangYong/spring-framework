@@ -20,18 +20,36 @@
     http://www.springframework.org/schema/util
     http://www.springframework.org/schema/util/spring-util.xsd">
 
+<!--	<beans profile="dev">-->
+
 	<beans>
+		<context:property-placeholder location="classpath:application.properties" />
+<!--		<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">-->
+<!--			<property name="locations">-->
+<!--				<list>-->
+<!--					<value>classpath:application.properties</value>-->
+<!--				</list>-->
+<!--			</property>-->
+<!--		</bean>-->
+
 		<bean id="test" class="yancy.BeanTest" autowire="byType"  >
 			<!--<lookup-method name="" bean=""></lookup-method>-->
 			<!--<replaced-method name="" replacer=""></replaced-method>-->
 			<meta key="name" value="yancy"></meta>
-			<!--<constructor-arg index="0" value="111" ></constructor-arg>-->
+<!--			<constructor-arg index="0" value="111" ></constructor-arg>-->
 			<!--<constructor-arg index="2">-->
 				<!--<value>11</value>-->
 			<!--</constructor-arg>-->
 		</bean>
+		<bean id="beanInjection1" class="yancy.BeanInjection1" ></bean>
 		<alias name="test" alias="test1"/>
-		<bean id="car" class="yancy.CarFactoryBean" ></bean>
+<!--		<bean id="car" class="yancy.CarFactoryBean" ></bean>-->
+
+<!--		<tx:annotation-driven/>-->
+<!--		<bean id="getBeanTest" class="test.lookup.app.GetBeanTest">-->
+<!--&lt;!&ndash;		 指定getBean抽象方法返回的对象是id为test的bean&ndash;&gt;-->
+<!--			<lookup-method name="getBean" bean="test"/>-->
+<!--		</bean>-->
 	</beans>
 
 
