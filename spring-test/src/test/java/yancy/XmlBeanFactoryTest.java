@@ -22,8 +22,8 @@ public class XmlBeanFactoryTest {
 		System.out.println(injection1);
 		BeanTest bean = (BeanTest)bf.getBean("test");
 		System.out.println(bean);
-		System.out.println(bean.getTest());
-		System.out.println(bean.getBeanInjection1());
+//		System.out.println(bean.getTest());
+//		System.out.println(bean.getBeanInjection1());
 //		System.out.println("&test======="+bf.getBean("&test"));
 //		BeanTest bean1 = (BeanTest)bf.getBean("test1");
 //		System.out.println(bean1);

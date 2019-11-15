@@ -31,11 +31,13 @@
 <!--				</list>-->
 <!--			</property>-->
 <!--		</bean>-->
-		<bean id="beanInjection1" class="yancy.BeanInjection1" ></bean>
+		<bean id="testBeanPostProcessor" class="yancy.TestBeanPostProcessor" ></bean>
+<!--		<bean id="testAware" class="yancy.TestAware" ></bean>-->
+<!--		<bean id="beanInjection1" class="yancy.BeanInjection1" ></bean>-->
 		<bean id="test" class="yancy.BeanTest" autowire="byType"  >
 <!--			<property name="beanInjection1" ref="beanInjection1"></property>-->
-<!--			<property name="test" value="${test}">-->
-<!--			</property>-->
+			<property name="test" value="${test}"></property>
+			<property name="date" value="${date}"></property>
 			<!--<lookup-method name="" bean=""></lookup-method>-->
 			<!--<replaced-method name="" replacer=""></replaced-method>-->
 			<meta key="name" value="yancy"></meta>
@@ -53,6 +55,22 @@
 <!--&lt;!&ndash;		 指定getBean抽象方法返回的对象是id为test的bean&ndash;&gt;-->
 <!--			<lookup-method name="getBean" bean="test"/>-->
 <!--		</bean>-->
+<!--		<bean class="org.springframework.beans.factory.config.CustomEditorConfigurer">-->
+<!--			<property name="customEditors">-->
+<!--				<map>-->
+<!--					<entry key="java.util.Date" value="yancy.DatePropertyEditor" >-->
+<!--					</entry>-->
+<!--				</map>-->
+<!--			</property>-->
+<!--		</bean>-->
+		<bean class="org.springframework.beans.factory.config.CustomEditorConfigurer">
+		    <property name="propertyEditorRegistrars">
+				<list>
+					<bean class="yancy.DatePropertyEditorRegistrars"/>
+				</list>
+			</property>
+		</bean>
+
 	</beans>
 
 

@@ -3,12 +3,17 @@ package yancy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 
+import java.util.Date;
+
 public class BeanTest {
-	@Autowired
+//	@Autowired
 	private BeanInjection1 beanInjection1;
 
 	@Value("${test}")
 	private String test;
+
+	@Value("${date}")
+	private Date date;
 
 	public BeanTest() {
 		System.out.println("BeanTest无参初始化");
@@ -30,9 +35,9 @@ public class BeanTest {
 		return beanInjection1;
 	}
 //
-//	public void setBeanInjection1(BeanInjection1 beanInjection1) {
-//		this.beanInjection1 = beanInjection1;
-//	}
+	public void setBeanInjection1(BeanInjection1 beanInjection1) {
+		this.beanInjection1 = beanInjection1;
+	}
 
 	public String getTest() {
 		return test;
@@ -40,5 +45,13 @@ public class BeanTest {
 
 	public void setTest(String test) {
 		this.test = test;
+	}
+
+	public Date getDate() {
+		return date;
+	}
+
+	public void setDate(Date date) {
+		this.date = date;
 	}
 }
