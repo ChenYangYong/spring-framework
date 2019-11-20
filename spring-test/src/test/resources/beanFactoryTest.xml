@@ -37,7 +37,7 @@
 		<bean id="test" class="yancy.BeanTest" autowire="byType"  >
 <!--			<property name="beanInjection1" ref="beanInjection1"></property>-->
 			<property name="test" value="${test}"></property>
-			<property name="date" value="${date}"></property>
+<!--			<property name="date" value="${date}"></property>-->
 			<!--<lookup-method name="" bean=""></lookup-method>-->
 			<!--<replaced-method name="" replacer=""></replaced-method>-->
 			<meta key="name" value="yancy"></meta>
@@ -68,6 +68,14 @@
 				<list>
 					<bean class="yancy.DatePropertyEditorRegistrars"/>
 				</list>
+			</property>
+		</bean>
+
+		<bean class="yancy.CustomBeanFactoryPostProcessor" id="customBeanFactoryPostProcessor" />
+		<bean class="yancy.CustomBeanPostProcessor" id="customBeanPostProcessor" />
+		<bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+			<property name="basename">
+				<value>messages</value>
 			</property>
 		</bean>
 
