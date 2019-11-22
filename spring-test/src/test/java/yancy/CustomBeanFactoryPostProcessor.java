@@ -26,7 +26,7 @@ public class CustomBeanFactoryPostProcessor implements BeanFactoryPostProcessor 
 			String name = names[i];
 
 			BeanDefinition bd = beanFactory.getBeanDefinition(name);
-			System.out.println("CustomBeanFactoryPostProcessor处理："+name + " bean properties: " + bd.getPropertyValues().toString());
+			System.out.println("CustomBeanFactoryPostProcessor处理bean="+ bd);
 			// 本内容只是个demo，打印持有的bean的属性情况
 		}
 	}

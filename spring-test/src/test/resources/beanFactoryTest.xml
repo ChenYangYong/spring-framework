@@ -23,6 +23,8 @@
 <!--	<beans profile="dev">-->
 
 	<beans>
+<!--		<context:annotation-config/>-->
+		<context:component-scan base-package="yancy"/>
 		<context:property-placeholder location="classpath:application.properties" />
 <!--		<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">-->
 <!--			<property name="locations">-->
@@ -31,12 +33,12 @@
 <!--				</list>-->
 <!--			</property>-->
 <!--		</bean>-->
-		<bean id="testBeanPostProcessor" class="yancy.TestBeanPostProcessor" ></bean>
+<!--		<bean id="testBeanPostProcessor" class="yancy.TestBeanPostProcessor" ></bean>-->
 <!--		<bean id="testAware" class="yancy.TestAware" ></bean>-->
 <!--		<bean id="beanInjection1" class="yancy.BeanInjection1" ></bean>-->
-		<bean id="test" class="yancy.BeanTest" autowire="byType"  >
+		<bean id="test" class="yancy.BeanTest" autowire="byType" init-method="init"  >
 <!--			<property name="beanInjection1" ref="beanInjection1"></property>-->
-			<property name="test" value="${test}"></property>
+<!--			<property name="test" value="${test}"></property>-->
 <!--			<property name="date" value="${date}"></property>-->
 			<!--<lookup-method name="" bean=""></lookup-method>-->
 			<!--<replaced-method name="" replacer=""></replaced-method>-->
@@ -50,36 +52,48 @@
 		<alias name="test" alias="test1"/>
 <!--		<bean id="car" class="yancy.CarFactoryBean" ></bean>-->
 
-<!--		<tx:annotation-driven/>-->
+		<tx:annotation-driven/>
 <!--		<bean id="getBeanTest" class="test.lookup.app.GetBeanTest">-->
 <!--&lt;!&ndash;		 指定getBean抽象方法返回的对象是id为test的bean&ndash;&gt;-->
 <!--			<lookup-method name="getBean" bean="test"/>-->
 <!--		</bean>-->
+		<bean class="org.springframework.beans.factory.config.CustomEditorConfigurer">
+			<property name="customEditors">
+				<map>
+					<entry key="java.util.Date" value="yancy.DatePropertyEditor" >
+					</entry>
+				</map>
+			</property>
+		</bean>
 <!--		<bean class="org.springframework.beans.factory.config.CustomEditorConfigurer">-->
-<!--			<property name="customEditors">-->
-<!--				<map>-->
-<!--					<entry key="java.util.Date" value="yancy.DatePropertyEditor" >-->
-<!--					</entry>-->
-<!--				</map>-->
+<!--		    <property name="propertyEditorRegistrars">-->
+<!--				<list>-->
+<!--					<bean class="yancy.DatePropertyEditorRegistrars"/>-->
+<!--				</list>-->
 <!--			</property>-->
 <!--		</bean>-->
-		<bean class="org.springframework.beans.factory.config.CustomEditorConfigurer">
-		    <property name="propertyEditorRegistrars">
+
+		<bean id="customBeanFactoryPostProcessor" class="yancy.CustomBeanFactoryPostProcessor" />
+		<bean id="customBeanPostProcessor" class="yancy.CustomBeanPostProcessor"  />
+		<bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+			<property name="basenames" value="properties/messages">
+<!--				<set>-->
+<!--					<value>properties/messages</value>-->
+<!--				</set>-->
+			</property>
+			<property name="fileEncodings" value="utf8"/>
+		</bean>
+		<bean id="testListener" class="yancy.TestListener" />
+		<!-- 自定义的类型转换器 -->
+		<bean id="conversionService"
+			  class="org.springframework.context.support.ConversionServiceFactoryBean">
+			<property name="converters">
 				<list>
-					<bean class="yancy.DatePropertyEditorRegistrars"/>
+					<bean class="yancy.String2DateConverter"></bean>
 				</list>
 			</property>
 		</bean>
 
-		<bean class="yancy.CustomBeanFactoryPostProcessor" id="customBeanFactoryPostProcessor" />
-		<bean class="yancy.CustomBeanPostProcessor" id="customBeanPostProcessor" />
-		<bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
-			<property name="basename">
-				<value>messages</value>
-			</property>
-		</bean>
-
 	</beans>
-
 
 </beans>
