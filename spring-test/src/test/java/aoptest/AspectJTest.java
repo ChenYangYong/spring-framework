@@ -1,31 +1,32 @@
 package aoptest;
 
+import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.*;
 
 @Aspect
 public class AspectJTest {
 	@Pointcut("execution(* *.test(..))")
-	public void test(){
+	public void testAop(){
 
 	}
-	@Before("test()")
-	public void before(){
+	@Before("testAop()")
+	public void before(JoinPoint joinPoint){
 		System.out.println("before------");
 	}
-	@After("test()")
-	public void after(){
+	@After("testAop()")
+	public void after(JoinPoint joinPoint){
 		System.out.println("after------");
 	}
-//	@AfterReturning("test()")
-//	public void afterReturning(){
-//		System.out.println("afterReturning------");
-//	}
-//	@AfterThrowing("test()")
-//	public void afterThrowing(){
-//		System.out.println("afterThrowing------");
-//	}
-	@Around("test()")
+	@AfterReturning("testAop()")
+	public void afterReturning(JoinPoint joinPoint){
+		System.out.println("afterReturning------");
+	}
+	@AfterThrowing("testAop()")
+	public void afterThrowing(JoinPoint joinPoint){
+		System.out.println("afterThrowing------");
+	}
+	@Around("testAop()")
 	public Object arountTest(ProceedingJoinPoint p ) {
 		System.out.println("arount start");
 		Object o=null ;
