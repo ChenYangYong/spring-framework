@@ -12,30 +12,30 @@ public class AspectJTest {
 	}
 	@Before("testAop()")
 	public void before(JoinPoint joinPoint){
-		System.out.println("before------");
+		System.out.println("before------"+this);
 	}
 	@After("testAop()")
 	public void after(JoinPoint joinPoint){
-		System.out.println("after------");
+		System.out.println("after------"+this);
 	}
 	@AfterReturning("testAop()")
 	public void afterReturning(JoinPoint joinPoint){
-		System.out.println("afterReturning------");
+		System.out.println("afterReturning------"+this);
 	}
 	@AfterThrowing("testAop()")
 	public void afterThrowing(JoinPoint joinPoint){
-		System.out.println("afterThrowing------");
+		System.out.println("afterThrowing------"+this);
 	}
-	@Around("testAop()")
+//	@Around("testAop()")
 	public Object arountTest(ProceedingJoinPoint p ) {
-		System.out.println("arount start");
+		System.out.println("arount start"+this);
 		Object o=null ;
 		try {
 			o = p.proceed();
 		} catch (Throwable throwable) {
 			throwable.printStackTrace();
 		}
-		System.out.println("arount end");
+		System.out.println("arount end"+this);
 		return o;
 	}
 }
