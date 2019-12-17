@@ -23,9 +23,8 @@
 
 	<beans>
 		<aop:aspectj-autoproxy />
-		<bean id="aoptest" class="aoptest.AopTestBean"  ></bean>
 		<bean class="aoptest.AspectJTest"></bean>
-		<bean id="userService" class="aoptest.impl.UserServiceImpl"  ></bean>
+		<bean id="aoptest" class="aoptest.AopTestBean"  ></bean>
 	</beans>
 
 </beans>
