@@ -1,5 +1,6 @@
 package aoptest;
 
+import aoptest.impl.UserServiceImpl;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.*;
@@ -38,4 +39,11 @@ public class AspectJTest {
 		System.out.println("arount end"+this);
 		return o;
 	}
+
+	/**
+	 * value：相当于XML中的types-matching，待引入增强作用的类的表达式， 支持通配符
+	 * 	defaultImpl：引入增强的具体实现
+	 */
+	@DeclareParents(value = "aoptest.AopTestBean", defaultImpl = UserServiceImpl.class)
+	public UserService userService;
 }

@@ -9,5 +9,8 @@ public class AopMain {
 		AopTestBean bean = (AopTestBean)ac.getBean("aoptest");
 		System.out.println(bean);
 		bean.test();
+		System.out.println("--------------------------");
+		UserService service = (UserService)bean;
+		service.a();
 	}
 }
