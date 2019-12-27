@@ -17,13 +17,13 @@ import org.springframework.transaction.annotation.Transactional;
 public class UserServiceImpl implements UserService {
 //	@Transactional(propagation = Propagation.REQUIRED)
 	public void a(){
-		System.out.println("a has been called "+this);
+		System.out.println("UserServiceImpl.a has been called "+this);
 		this.test();
 //		((UserService)AopContext.currentProxy()).b();
 	}
 //	@Transactional(propagation = Propagation.REQUIRES_NEW)
 	@Async
 	public void test(){
-		System.out.println("test has been called "+this);
+		System.out.println("UserServiceImpl.test has been called "+this);
 	}
 }

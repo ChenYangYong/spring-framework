@@ -11,7 +11,7 @@ import java.lang.reflect.Proxy;
 public class Test {
 
 	public static void main(String[] args) {
-		saveProxyFile();
+//		saveProxyFile();
 		//要代理的真实对象
 		People people = new Teacher();
 		//代理对象的调用处理程序，我们将要代理的真实对象传入代理对象的调用处理的构造函数中，最终代理对象的调用处理程序会调用真实对象的方法
