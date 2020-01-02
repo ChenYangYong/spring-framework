@@ -11,6 +11,8 @@ import java.lang.reflect.Proxy;
 public class Test {
 
 	public static void main(String[] args) {
+		//生成$Proxy0的class文件  JDK动态代理生成的文件默认在当前项目目录的com/sun/proxy下
+		System.getProperties().put("sun.misc.ProxyGenerator.saveGeneratedFiles", "true");
 //		saveProxyFile();
 		//要代理的真实对象
 		People people = new Teacher();
