@@ -23,7 +23,7 @@
 
 	<beans>
 		<aop:aspectj-autoproxy proxy-target-class="false" expose-proxy="false"/>
-		<context:load-time-weaver aspectj-weaving="on" />
+<!--		<context:load-time-weaver aspectj-weaving="off" />-->
 		<bean class="aoptest.AspectJTest"></bean>
 		<bean id="aoptest" class="aoptest.AopTestBean"  ></bean>
 <!--		<bean id="userService" class="aoptest.impl.UserServiceImpl"  ></bean>-->

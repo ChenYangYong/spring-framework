@@ -1,5 +1,6 @@
 package aoptest.cglib;
 
+import org.springframework.cglib.core.DebuggingClassWriter;
 import org.springframework.cglib.proxy.Enhancer;
 import org.springframework.cglib.proxy.MethodInterceptor;
 import org.springframework.cglib.proxy.MethodProxy;
@@ -8,6 +9,7 @@ import java.lang.reflect.Method;
 
 public class EnhancerDemo {
 	public static void main (String [] args) {
+		System.setProperty(DebuggingClassWriter.DEBUG_LOCATION_PROPERTY, "D:\\111");
 		Enhancer enhancer = new Enhancer ();
 		enhancer.setSuperclass(EnhancerDemo.class);
 		enhancer.setCallback(new Methodinterceptorimpl());
