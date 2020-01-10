@@ -29,9 +29,9 @@ public class DBTest {
 		Connection con = null;
 		try{
 			Class.forName("com.mysql.jdbc.Driver");
-			url = "jdbc:mysql://localhost:3306/test01?useSSL=FALSE&serverTimezone=UTC";
+			url = "jdbc:mysql://10.23.5.124:3306/test?useSSL=FALSE&serverTimezone=UTC";
 			user = "root";
-			password = "123456";
+			password = "EMall@1234";
 			con = DriverManager.getConnection(url, user, password);
 		}catch (Exception e){
 			e.printStackTrace();
@@ -204,7 +204,7 @@ public class DBTest {
 				//为验证TRANSACTION_REPEATABLE_READ中的幻读，进行一次修改
 				if(j!=0 && transactionType==4 && StringUtils.isBlank(dictType)){
 					System.out.println("=============幻读模拟更新========");
-					String updateSql = "UPDATE t_dict  SET dict_code = '33', dict_name = 'type33', dict_remark = 'type33' WHERE dict_type ='type0'";
+					String updateSql = "UPDATE t_dict  SET dict_code = '33' WHERE dict_type ='type0'";
 					state.execute(updateSql);
 				}
 				rs = state.executeQuery(sql);
@@ -383,15 +383,21 @@ public class DBTest {
 	 * 事务中time1时刻向数据库中新增‘00’，并在time3时刻提交；thread2在一个事务中
 	 * 分别在time2和time4两个时刻扫描库表，若两次读取结果不同则为幻读。
 	 * （注意：1.幻读针对已经提交的数据。2.两次或多次读取不同行数据，数量上新增或减少。）
+	 * 对于隔离级别为TRANSACTION_REPEATABLE_READ的，幻读只会发生在同一条数据上，当前事物的修改与
+	 * 预想中修改后的结果不一样
 	 */
 	public void testTrick(int transactionType){
 		List<String> list = new ArrayList<String>();
-		list.add("type2");
+		if(transactionType==4){
+			list.add("type0");
+		}else{
+			list.add("type2");
+		}
 		list.add("22");
 		list.add("type22");
 		list.add("type22");
-		//执行插入，不产生异常
-		TestThread testThread = new TestThread("insert",1,1000,list);
+		//执行修改或插入，不产生异常
+		TestThread testThread = new TestThread((transactionType==4)?"update":"insert",1,1000,list);
 		Thread thread = new Thread(testThread);
 		thread.start();
 		//打印两次
@@ -483,11 +489,11 @@ public class DBTest {
 //      System.out.println("------------TRANSACTION_READ_COMMITTED(直译为仅允许读取已提交的数据，即不能读脏，但是可能发生不可重读和幻读) test start------------------------");
 //      dbTest.testTransaction(Connection.TRANSACTION_READ_COMMITTED);
 //
-      System.out.println("------------TRANSACTION_REPEATABLE_READ(不可读脏，保证同一事务重复读取相同数据，但是可能发生幻读) test start------------------------");
-      dbTest.testTransaction(Connection.TRANSACTION_REPEATABLE_READ);
+//      System.out.println("------------TRANSACTION_REPEATABLE_READ(不可读脏，保证同一事务重复读取相同数据，但是可能发生幻读) test start------------------------");
+//      dbTest.testTransaction(Connection.TRANSACTION_REPEATABLE_READ);
 
-//      System.out.println("------------TRANSACTION_SERIALIZABLE(直译为串行事务，保证不读脏，可重复读，不可幻读，事务隔离级别最高) test start------------------------");
-//      dbTest.testTransaction(Connection.TRANSACTION_SERIALIZABLE);
+      System.out.println("------------TRANSACTION_SERIALIZABLE(直译为串行事务，保证不读脏，可重复读，不可幻读，事务隔离级别最高) test start------------------------");
+      dbTest.testTransaction(Connection.TRANSACTION_SERIALIZABLE);
 //
 //      System.out.println("------------default TRANSACTION_NONE(无事务)  test start------------------------");
 //      dbTest.testTransaction(-1);
