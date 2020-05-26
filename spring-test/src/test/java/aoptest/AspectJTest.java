@@ -14,6 +14,17 @@ public class AspectJTest {
 	@Before("testAop()")
 	public void before(JoinPoint joinPoint){
 		System.out.println("before------"+this);
+		//getTarget和getThis相同，个人理解是getTarget的所有方法都是调用getThis的，包括toString
+		System.out.println("这是joinpoint.gettarget所指向的对象" + joinPoint.getTarget());
+		System.out.println("这是joinpoint.getthis所指向的对象" + joinPoint.getThis());
+		System.out.println("这是joinpoint.gettarget所指向的对象" + joinPoint.getTarget().getClass().getName());
+		System.out.println("这是joinpoint.getthis所指向的对象" + joinPoint.getThis().getClass().getName());
+		System.out.println("joinPoint.getTarget()==joinPoint.getThis()值="+(joinPoint.getTarget()==joinPoint.getThis()));
+		System.out.println("joinPoint.getTarget().getClass()==joinPoint.getThis().getClass()的值"+(joinPoint.getTarget().getClass()==joinPoint.getThis().getClass()));
+
+		System.out.println("这是joinpoint.gettarget所指向的对象的hashcode=" + joinPoint.getTarget().hashCode());
+		System.out.println("这是joinpoint.getthis所指向的对象的hashcode=" + joinPoint.getThis().hashCode());
+
 	}
 	@After("testAop()")
 	public void after(JoinPoint joinPoint){

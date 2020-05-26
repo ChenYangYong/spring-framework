@@ -14,10 +14,10 @@ public class AopTestBean {
 		System.out.println(testStr);
 	}
 
-	@Override
-	public String toString() {
-		return "AopTestBean{" +
-				"testStr='" + testStr + '\'' +
-				'}';
-	}
+//	@Override
+//	public String toString() {
+//		return "AopTestBean{" +
+//				"testStr='" + testStr + '\'' +
+//				'}';
+//	}
 }
