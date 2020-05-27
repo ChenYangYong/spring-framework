@@ -27,6 +27,9 @@ public class Test {
 		People proxy = (People) Proxy.newProxyInstance(handler.getClass().getClassLoader(), people.getClass().getInterfaces(), handler);
 		//System.out.println(proxy.toString());
 		System.out.println(proxy.work());
+
+		System.out.println("原始对象hashcode="+people.hashCode());
+		System.out.println("代理对象hashcode="+proxy.hashCode());
 	}
 	/**
 	 * 保存 JDK 动态代理生产的类
