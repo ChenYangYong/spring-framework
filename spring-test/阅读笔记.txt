@@ -3,3 +3,8 @@
 1.InstantiationAwareBeanPostProcessor（产生代理）（此步在bean被new之前，其它在bean被new之后）
 2.MergedBeanDefinitionPostProcessor（类似处理Autowired）
 3.BeanPostProcessor
+
+
+spring不支持构造器、非单例模式的循环依赖
+setter模式的循环依赖是bean被创建后，被包裹到ObjectFactory中，然后放入到三级缓存singletonFactories中的
+
