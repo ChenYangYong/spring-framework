@@ -1,0 +1,5 @@
+
+各BeanPostProcessor处理bean的流程
+1.InstantiationAwareBeanPostProcessor（产生代理）（此步在bean被new之前，其它在bean被new之后）
+2.MergedBeanDefinitionPostProcessor（类似处理Autowired）
+3.BeanPostProcessor
