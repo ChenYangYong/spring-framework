@@ -2,6 +2,7 @@ package aoptest.cglib;
 
 import org.springframework.cglib.core.DebuggingClassWriter;
 import org.springframework.cglib.proxy.Enhancer;
+import org.springframework.cglib.proxy.Factory;
 import org.springframework.cglib.proxy.MethodInterceptor;
 import org.springframework.cglib.proxy.MethodProxy;
 
@@ -16,6 +17,7 @@ public class EnhancerDemo {
 		EnhancerDemo demo= (EnhancerDemo)enhancer.create() ;
 		demo.test();
 		System.out .println (demo);
+		System.out.println(demo instanceof Factory);
 	}
 	public void test(){
 		System.out.println ("EnhancerDemo test ()" ) ;
