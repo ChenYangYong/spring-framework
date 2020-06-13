@@ -1,0 +1,25 @@
+https://www.cnblogs.com/monkey0307/p/8328821.html
+https://blog.csdn.net/makecontral/article/details/79593732
+
+//对一个类产生代理类时，对每一个方法会产生一个同名的方法以及一个“CGLIB$被代理方法$0”的方法
+
+//代理方法（methodProxy.invokeSuper会调用）
+   final void CGLIB$setPerson$0() {
+      super.setPerson();
+   }
+   //被代理方法(methodProxy.invoke会调用，这就是为什么在拦截器中调用methodProxy.invoke会死循环，一直在调用拦截器)
+   public final void setPerson() {
+      MethodInterceptor var10000 = this.CGLIB$CALLBACK_0;
+      if(this.CGLIB$CALLBACK_0 == null) {
+         CGLIB$BIND_CALLBACKS(this);
+         var10000 = this.CGLIB$CALLBACK_0;
+      }
+
+      if(var10000 != null) {         //调用拦截器
+         var10000.intercept(this, CGLIB$setPerson$0$Method, CGLIB$emptyArgs, CGLIB$setPerson$0$Proxy);
+      } else {
+         super.setPerson();
+      }
+   }
+调用过程：
+代理对象调用this.setPerson方法->调用拦截器->methodProxy.invokeSuper->CGLIB$setPerson$0->被代理对象setPerson方法

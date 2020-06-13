@@ -8,3 +8,10 @@
 spring不支持构造器、非单例模式的循环依赖
 setter模式的循环依赖是bean被创建后，被包裹到ObjectFactory中，然后放入到三级缓存singletonFactories中的
 
+
+
+cglib：
+代理类为每个目标类的每一个方法生成两个方法与之对应，例如针对目标类中的每个非private方法，代理类会生成两个方法，
+以g方法为例：
+一个是@Override的g方法，
+一个是CGLIB$g$0（相当于目标类的g方法，该方法中直接调用super.g()方法）
