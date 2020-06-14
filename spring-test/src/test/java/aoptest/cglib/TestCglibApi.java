@@ -3,6 +3,7 @@ package aoptest.cglib;
 import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.cglib.beans.*;
+import org.springframework.cglib.core.DebuggingClassWriter;
 import org.springframework.cglib.core.KeyFactory;
 import org.springframework.cglib.proxy.*;
 
@@ -53,6 +54,7 @@ public class TestCglibApi {
 	public void testInvocationHandler() throws Exception{
 		Enhancer enhancer = new Enhancer();
 		enhancer.setSuperclass(Target.class);
+		//设置单一回调对象，在调用中拦截对目标方法的调用
 		enhancer.setCallback(new InvocationHandler() {
 			@Override
 			public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
@@ -75,6 +77,7 @@ public class TestCglibApi {
 	 */
 	@Test
 	public void testCallbackFilter() throws Exception{
+		System.setProperty(DebuggingClassWriter.DEBUG_LOCATION_PROPERTY, "D:\\111");
 		Enhancer enhancer = new Enhancer();
 		CallbackHelper callbackHelper = new CallbackHelper(Target.class, new Class[0]) {
 			@Override
@@ -99,7 +102,17 @@ public class TestCglibApi {
 		System.out.println(proxy.toString());
 		System.out.println(proxy.hashCode());
 	}
-
+	@Test
+	public void testCallbackFilter1() throws Exception{
+		System.setProperty(DebuggingClassWriter.DEBUG_LOCATION_PROPERTY, "D:\\111");
+		Enhancer enhancer = new Enhancer();
+		enhancer.setSuperclass(Target.class);
+		enhancer.setCallbackFilter(new CallBackFilterTest());
+		enhancer.setCallbacks(new Callback[] {new Methodinterceptorimpl(),NoOp.INSTANCE,new Methodinterceptorimpl1()});
+		Target proxy = (Target) enhancer.create();
+		System.out.println(proxy.out(null));
+		proxy.test2();
+	}
 	@Test
 	public void testImmutableBean() {
 		Target bean = new Target();
@@ -186,6 +199,17 @@ public class TestCglibApi {
 		Object key = keyFactory.newInstance("foo", 42);
 		Object key1 = keyFactory.newInstance("foo", 42);
 		Assert.assertEquals(key,key1);//测试参数相同，结果是否相等
+	}
+
+	@Test
+	public void testAbstract() throws Exception{
+		System.setProperty(DebuggingClassWriter.DEBUG_LOCATION_PROPERTY, "D:\\111");
+		Enhancer enhancer = new Enhancer();
+		enhancer.setSuperclass(AbstractClass.class);
+		enhancer.setCallback(new Methodinterceptorimpl());
+		AbstractClass proxy = (AbstractClass) enhancer.create();
+		proxy.test();
+		proxy.abstractTest();
 	}
 
 }

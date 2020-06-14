@@ -23,3 +23,10 @@ https://blog.csdn.net/makecontral/article/details/79593732
    }
 调用过程：
 代理对象调用this.setPerson方法->调用拦截器->methodProxy.invokeSuper->CGLIB$setPerson$0->被代理对象setPerson方法
+
+
+Enhancer.setCallback设置单一回调，所有类中方法都用该回调
+net.sf.cglib.proxy.CallbackFilter允许我们在方法层设置回调（callback），根据我们对方法处理的需求设置不同的回调；
+enhancer.setCallbackFilter和enhancer.setCallbacks配合使用
+CallbackFilter可以设置某个方法该使用什么样的回调，CallbackFilter实现类中返回对应方法应该使用的下标
+该下标对应setCallbacks数组中callback的下标
