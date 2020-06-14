@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Value;
 import java.util.Date;
 
 public class BeanTest {
-//	@Autowired
+	@Autowired
 	private BeanInjection1 beanInjection1;
 
 //	@Value("${test}")
@@ -15,7 +15,12 @@ public class BeanTest {
 //	@Value("${date}")
 	private Date date;
 
+	@Value("${initValue}")
 	private String initValue;
+
+	private String noSetStr;
+
+	private String hasSetStr;
 
 	public BeanTest() {
 		System.out.println("BeanTest无参创建");
@@ -41,10 +46,10 @@ public class BeanTest {
 	public BeanInjection1 getBeanInjection1() {
 		return beanInjection1;
 	}
-//
-	public void setBeanInjection1(BeanInjection1 beanInjection1) {
-		this.beanInjection1 = beanInjection1;
-	}
+////
+//	public void setBeanInjection1(BeanInjection1 beanInjection1) {
+//		this.beanInjection1 = beanInjection1;
+//	}
 
 	public String getTest() {
 		return test;
@@ -62,6 +67,10 @@ public class BeanTest {
 		this.date = date;
 	}
 
+	public void setHasSetStr(String hasSetStr) {
+		this.hasSetStr = hasSetStr;
+	}
+
 	@Override
 	public String toString() {
 		return "BeanTest{" +
@@ -69,6 +78,8 @@ public class BeanTest {
 				", test='" + test + '\'' +
 				", date=" + date +
 				", initValue='" + initValue + '\'' +
+				", noSetStr='" + noSetStr + '\'' +
+				", hasSetStr='" + hasSetStr + '\'' +
 				'}';
 	}
 }
