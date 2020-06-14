@@ -9,10 +9,10 @@ public class BeanTest {
 //	@Autowired
 	private BeanInjection1 beanInjection1;
 
-	@Value("${test}")
+//	@Value("${test}")
 	private String test;
 
-	@Value("${date}")
+//	@Value("${date}")
 	private Date date;
 
 	private String initValue;

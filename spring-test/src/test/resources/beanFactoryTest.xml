@@ -37,12 +37,12 @@
 <!--		<bean id="testAware" class="yancy.TestAware" ></bean>-->
 <!--		<bean id="beanInjection1" class="yancy.BeanInjection1" ></bean>-->
 		<bean id="test" class="yancy.BeanTest" autowire="byType" init-method="init"  >
-<!--			<property name="beanInjection1" ref="beanInjection1"></property>-->
-<!--			<property name="test" value="${test}"></property>-->
-<!--			<property name="date" value="${date}"></property>-->
+			<!--<property name="beanInjection1" ref="beanInjection1"></property>-->
+			<property name="test" value="${test}"></property>
+			<property name="date" value="${date}"></property>
 			<!--<lookup-method name="" bean=""></lookup-method>-->
 			<!--<replaced-method name="" replacer=""></replaced-method>-->
-			<meta key="name" value="yancy"></meta>
+			<!--<meta key="name" value="yancy"></meta>-->
 <!--			<constructor-arg index="0" value="111" ></constructor-arg>-->
 			<!--<constructor-arg index="2">-->
 				<!--<value>11</value>-->

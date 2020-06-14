@@ -16,8 +16,8 @@ public class XmlBeanFactoryTest {
 //		System.out.println(myBean.getMessage());
 
 
-		BeanFactory bf= new XmlBeanFactory(new ClassPathResource("beanFactoryTest.xml"));
-//		ClassPathXmlApplicationContext bf = new ClassPathXmlApplicationContext("beanFactoryTest.xml");
+//		BeanFactory bf= new XmlBeanFactory(new ClassPathResource("beanFactoryTest.xml"));
+		ClassPathXmlApplicationContext bf = new ClassPathXmlApplicationContext("beanFactoryTest.xml");
 //		BeanInjection1 injection1 = (BeanInjection1)bf.getBean("beanInjection1");
 //		System.out.println(injection1);
 		BeanTest bean = (BeanTest)bf.getBean("test");

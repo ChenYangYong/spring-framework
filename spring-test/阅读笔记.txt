@@ -1,12 +1,16 @@
 
 各BeanPostProcessor处理bean的流程
-1.InstantiationAwareBeanPostProcessor（产生代理）（此步在bean被new之前，其它在bean被new之后）
+1.InstantiationAwareBeanPostProcessor（产生代理或为bean设置属性，此bean有构造之前构造之后，初始化前初始化后各种方法）
+（此步在bean被new之前或之后，但一定是在被初始化之前，其它在bean被new之后）
 2.MergedBeanDefinitionPostProcessor（类似处理Autowired）
 3.BeanPostProcessor
 
+init-method和afterPropertiesSet 都是在初始化bead时执行，执行顺序是 afterPropertiesSet
+先执行，而 init-method 后执行。
+
 
 spring不支持构造器、非单例模式的循环依赖
-setter模式的循环依赖是bean被创建后，被包裹到ObjectFactory中，然后放入到三级缓存singletonFactories中的
+setter模式的循环依赖是bean被创建后初始化前，被包裹到ObjectFactory中，然后放入到三级缓存singletonFactories中的
 
 
 
