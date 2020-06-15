@@ -13,6 +13,14 @@ import static org.junit.Assert.assertEquals;
 
 public class TestCglibApi {
 	@Test
+	public void testMethodInterceptorUserFather() {
+		Enhancer enhancer = new Enhancer();
+		enhancer.setSuperclass(Target.class);
+		enhancer.setCallback(new MethodinterceptorMoNiUserFather());
+		Target sample = (Target) enhancer.create();
+		sample.test();
+	}
+	@Test
 	public void testMethodInterceptor() {
 		Enhancer enhancer = new Enhancer();
 		enhancer.setSuperclass(Target.class);

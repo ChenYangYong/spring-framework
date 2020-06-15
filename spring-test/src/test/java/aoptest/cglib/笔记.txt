@@ -1,7 +1,7 @@
 https://www.cnblogs.com/monkey0307/p/8328821.html
 https://blog.csdn.net/makecontral/article/details/79593732
 
-//对一个类产生代理类时，对每一个方法会产生一个同名的方法以及一个“CGLIB$被代理方法$0”的方法
+//对一个类产生代理类时，对每一个方法会产生一个同名的方法以及一个“CGLIB$被代理方法$0”的方法，简称第二方法
 
 //代理方法（methodProxy.invokeSuper会调用）
    final void CGLIB$setPerson$0() {
@@ -30,3 +30,33 @@ net.sf.cglib.proxy.CallbackFilter允许我们在方法层设置回调（callback
 enhancer.setCallbackFilter和enhancer.setCallbacks配合使用
 CallbackFilter可以设置某个方法该使用什么样的回调，CallbackFilter实现类中返回对应方法应该使用的下标
 该下标对应setCallbacks数组中callback的下标
+
+
+
+代理对象调用流程:
+1.子类的方法
+2.拦截器的方法
+3.MethodProxy的invoke或者invokeSuper方法
+  a.invokeSuper方法会调用子类fast类的invoke方法  fci.f2.invoke(fci.i2, obj, args);
+  b.invoke方法会调用父类fast类的invoke方法       fci.f1.invoke(fci.i1, obj, args);
+4.cglib普通的代理是调用invokeSuper方法，入参二是子类实例
+5.aop代理是调用invoke方法，入参是父类的实例
+
+
+MethodProxy实例中包含 父fast类fci.f1，子fast类fci.f2，代理方法索引fci.i1，第二方法索引fci.i2
+
+cglib会为父类和子类各生成一个fast类
+fast类可以理解为为对应的类的每个方法生成了一个索引，然后根据索引来调用相应方法，不走反射，所以运行比
+jdk动态代理快
+fast类的invoke方法说明:根据入参一，来调用入参二的相应方法，入参三为被调用方法的入参
+Object invoke(int 方法索引, Object 要调用方法的实例, Object[] 方法参数);
+
+
+父fast类的invoke中会把入参二强制转换成父类
+子fast类的invoke中会把入参二强制转换成子类（调用时实际调用的是子类方法的第二方法，第二方法调用了父类的方法即super.父方法）
+所以MethodProxy.invoke中可以传任意父类（含子类）的实例
+所以MethodProxy.invokeSuper中只能送子类的实例
+
+
+入参一在被MethodProxy.invoke调用时，值是要调用方法的索引（如setPerson的索引），
+再被MethodProxy.invokeSuper时，是子类中第二方法的索引（如CGLIB$setPerson$0的索引）

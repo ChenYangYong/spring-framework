@@ -15,7 +15,7 @@ public class MyAspectJ {
 
 	@Around("pointcutName()")
 	public Object add(ProceedingJoinPoint joinPoint) throws Throwable{
-		System.out.println("--------add-----start");
+		System.out.println("---add-----start--"+joinPoint.getSignature()+"--"+joinPoint.getThis()+"--"+joinPoint.getTarget());
 		return joinPoint.proceed();
 	}
 }
