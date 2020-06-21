@@ -30,5 +30,17 @@ public class CustomBeanPostProcessor implements InstantiationAwareBeanPostProces
 		System.out.println("CustomBeanPostProcessor.postProcessPropertyValues bean : " + bean);
 		return pvs;
 	}
+
+	@Override
+	public Object postProcessBeforeInstantiation(Class<?> beanClass, String beanName) throws BeansException {
+		System.out.println("CustomBeanPostProcessor.postProcessBeforeInstantiation bean : " + beanName+","+beanClass);
+		return null;
+	}
+
+	@Override
+	public boolean postProcessAfterInstantiation(Object bean, String beanName) throws BeansException {
+		System.out.println("CustomBeanPostProcessor.postProcessAfterInstantiation bean : " + beanName+","+bean);
+		return true;
+	}
 }
 
