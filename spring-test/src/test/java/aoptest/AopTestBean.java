@@ -1,6 +1,9 @@
 package aoptest;
 
+import org.springframework.beans.factory.annotation.Value;
+
 public class AopTestBean {
+	@Value("${test}")
 	private String testStr = "AopTestBean";
 
 	public String getTestStr() {
