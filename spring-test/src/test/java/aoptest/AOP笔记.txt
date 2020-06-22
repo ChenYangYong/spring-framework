@@ -1,0 +1,4 @@
+spring在解析切面时，会将切面解析成一个PointcutAdvisor接口的实现类
+PointcutAdvisor中包含一个Pointcut和Advice实例
+Pointcut代表切入点的逻辑
+Advice代表要做的事情

@@ -17,10 +17,38 @@ public class TestLeetCode {
 //		int pos3 = s.indexOf('a',pos2+1);
 //		System.out.println(pos3);
 		TestLeetCode leetCode = new TestLeetCode();
-		System.out.println(leetCode.longestPalindrome("babad"));
-		System.out.println(leetCode.longestPalindrome("cbbd"));
-		System.out.println(leetCode.longestPalindrome("a"));
+		System.out.println(leetCode.convert("LEETCODEISHIRING",3));
+		System.out.println(leetCode.convert("LEETCODEISHIRING",4));
 
+	}
+	public String convert(String s, int numRows) {
+		//解题思路:旋转z每L=(numRows+(numRows-2))个字符形成一个轮回
+		//各字符位置整除这个轮回后余数Y小于numRows的直接放入对应行中
+		//大于numRows的放入L-Y的行中
+		if(s==null || s.length()==0 || numRows<2){
+			return s;
+		}
+		List<StringBuilder> numList = new ArrayList<StringBuilder>(numRows);
+		for(int i=0;i<numRows;i++){
+			numList.add(new StringBuilder());
+		}
+		//一圈轮回数字行数+行数-首尾两行
+		int wheelNum = numRows +(numRows-2);
+		for(int j=0,len=s.length();j<len;j++){
+			//获取当前字符
+			char c = s.charAt(j);
+			//字符位置对轮询求余
+			int num = j%wheelNum;
+			//得到该字符应该放的行
+			int putNum = num<numRows?num:wheelNum-num;
+			numList.get(putNum).append(c);
+		}
+		StringBuilder result = new StringBuilder();
+		//按行将结果合并
+		for(StringBuilder sb:numList){
+			result.append(sb.toString());
+		}
+		return result.toString();
 	}
 	public String longestPalindrome(String s) {
 		//解题思路：回文为对称字符串，即开始字符必定跟最后一个字符相同，且两个字符反转后相等
