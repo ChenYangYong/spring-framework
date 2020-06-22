@@ -4,16 +4,52 @@ import java.util.*;
 
 public class TestLeetCode {
 	public static void main(String[] args) {
-		Integer[] a = {9, 8, 7, 2, 3, 4, 1, 0, 6, 5};
-		Arrays.sort(a);
-		System.out.println(Arrays.toString(a));
-		Arrays.sort(a,Collections.reverseOrder());
-		System.out.println(Arrays.toString(a));
+//		String s = "abceabcabcd";
+//		System.out.println(s.indexOf('a'));
+//		int pos0 = s.indexOf('a');
+//		System.out.println(s.substring(0,pos0+1));
+//		int pos1 = s.indexOf('a',pos0+1);
+//		System.out.println(pos1);
+//		System.out.println(s.substring(0,pos1+1));
+//		int pos2 = s.indexOf('a',pos1+1);
+//		System.out.println(pos2);
+//		System.out.println(s.substring(0,pos2+1));
+//		int pos3 = s.indexOf('a',pos2+1);
+//		System.out.println(pos3);
+		TestLeetCode leetCode = new TestLeetCode();
+		System.out.println(leetCode.longestPalindrome("babad"));
+		System.out.println(leetCode.longestPalindrome("cbbd"));
+		System.out.println(leetCode.longestPalindrome("a"));
 
-//		TestLeetCode leetCode = new TestLeetCode();
-//		System.out.println(leetCode.findMedianSortedArrays(new int[]{},new int[]{1}));
-//		System.out.println(leetCode.findMedianSortedArrays(new int[]{-1,-2},new int[]{3}));
-
+	}
+	public String longestPalindrome(String s) {
+		//解题思路：回文为对称字符串，即开始字符必定跟最后一个字符相同，且两个字符反转后相等
+		//故对字符串进行迭代，对每个字符找到与他同样字符的位置进行截取，反转后判断是否相等
+		//最大回文
+		String longest = "";
+		//循环处理每一个字符
+		for(int i=0,len=s.length();i<len;i++){
+			char c = s.charAt(i);
+			//第一次对自我进行判断，避免回文中就一个字符
+			int pos = i;
+			do{
+				//截取首尾相同的一段子字符
+				String sub = s.substring(i,pos+1);
+				//对子字符进行反转
+				String reverse = new StringBuffer(sub).reverse().toString();
+				//如果反转后相等，且长度大于已有回文，替换老的
+				if(sub.equals(reverse) && sub.length()>=longest.length()){
+					longest = sub;
+				}
+				//寻找字符串中下一个相同字符的位置
+				pos = s.indexOf(c,pos+1);
+			}while (pos!=-1);
+			//如果已有回文长度大于剩余字符串长度，代表已找到
+			if(longest.length()>len-i){
+				break;
+			}
+		}
+		return longest;
 	}
 	public double findMedianSortedArrays(int[] nums1, int[] nums2) {
 		int[] arr = new int[nums1.length + nums2.length];
