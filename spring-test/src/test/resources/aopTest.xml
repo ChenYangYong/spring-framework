@@ -22,12 +22,12 @@
 
 
 	<beans>
-		<context:component-scan base-package="aoptest"/>
+		<!--<context:component-scan base-package="aoptest"/>-->
 		<!--<context:property-placeholder location="classpath:application.properties" />-->
-		<aop:aspectj-autoproxy proxy-target-class="false" expose-proxy="false"/>
+		<!--<aop:aspectj-autoproxy proxy-target-class="false" expose-proxy="false"/>-->
 <!--		<context:load-time-weaver aspectj-weaving="off" />-->
 		<!--<bean class="aoptest.AspectJTest"></bean>-->
-		<bean id="aoptest" class="aoptest.AopTestBean"  ></bean>
+		<bean id="proxyObjectTest" class="aoptest.AopTestBean"  ></bean>
 <!--		<bean id="userService" class="aoptest.impl.UserServiceImpl"  ></bean>-->
 		<!-- 配置切面的bean -->
 		<bean id="aopXmlTest" class="aoptest.AopXmlTest"></bean>
@@ -35,20 +35,20 @@
 		<bean id="advisorTest" class="aoptest.AdvisorTest"></bean>
 
 		<!-- 配置AOP ，表示出对象中的逻辑-->
-		<!--<aop:config proxy-target-class="true" expose-proxy="true">-->
-			<!--&lt;!&ndash; 配置切点表达式 &ndash;&gt;-->
-			<!--<aop:pointcut  id="pointcut" expression="execution(* aoptest.AopTestBean.*(..))"></aop:pointcut>-->
-			<!--<aop:advisor id="advisor" advice-ref="advisorTest" pointcut-ref="pointcut" order="5"/>-->
-			<!--&lt;!&ndash; 配置切面通知 &ndash;&gt;-->
-			<!--<aop:aspect id="aspect" ref="aopXmlTest" order="1">-->
-				<!--&lt;!&ndash;前置通知  &ndash;&gt;-->
-				<!--<aop:before  method="beforedMethod" pointcut-ref="pointcut"></aop:before>-->
-				<!--&lt;!&ndash;返回通知,注意，方法中有多少个参数，这里就要配置多少个参数，参数值和函数中一致&ndash;&gt;-->
-				<!--<aop:after-returning method="afterReturningMethod" pointcut-ref="pointcut" returning="result"></aop:after-returning>-->
-				<!--&lt;!&ndash;异常通知，注意，方法中有多少个参数，这里就要配置多少个参数，参数值和函数中一致&ndash;&gt;-->
-				<!--<aop:after-throwing method="afterThrowingMethod" pointcut-ref="pointcut" throwing="e"></aop:after-throwing>-->
-			<!--</aop:aspect>-->
-		<!--</aop:config>-->
+		<aop:config proxy-target-class="true" expose-proxy="true">
+			<!-- 配置切点表达式 -->
+			<aop:pointcut  id="pointcut" expression="execution(* aoptest.AopTestBean.*(..))"></aop:pointcut>
+			<aop:advisor id="advisor" advice-ref="advisorTest"  pointcut="execution(public void aoptest.AopTestBean.test(String) throws Exception)" order="1"/>
+			<!-- 配置切面通知 -->
+			<aop:aspect id="aspect" ref="aopXmlTest" order="1">
+				<!--前置通知  -->
+				<aop:before  method="beforedMethod" pointcut-ref="pointcut"></aop:before>
+				<!--返回通知,注意，方法中有多少个参数，这里就要配置多少个参数，参数值和函数中一致-->
+				<aop:after-returning method="afterReturningMethod" pointcut-ref="pointcut" returning="result"></aop:after-returning>
+				<!--异常通知，注意，方法中有多少个参数，这里就要配置多少个参数，参数值和函数中一致-->
+				<aop:after-throwing method="afterThrowingMethod" pointcut-ref="pointcut" throwing="e"></aop:after-throwing>
+			</aop:aspect>
+		</aop:config>
 	</beans>
 
 </beans>

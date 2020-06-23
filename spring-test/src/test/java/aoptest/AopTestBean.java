@@ -13,8 +13,8 @@ public class AopTestBean {
 	public void setTestStr(String testStr) {
 		this.testStr = testStr;
 	}
-	public void test(){
-		System.out.println(testStr);
+	public void test(String str){
+		System.out.println(testStr+"---"+str);
 	}
 
 //	@Override

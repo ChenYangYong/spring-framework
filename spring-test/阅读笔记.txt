@@ -1,9 +1,30 @@
+https://blog.csdn.net/jy02268879/category_9286071.html
+
+xml解析：
+在解析到自定义标签（含其它组件标签）时，会使用到DefaultNamespaceHandlerResolver类，
+该类默认加载所有jar包中META-INF/spring.handlers文件，解析到标签对应的类名（实现了NamespaceHandler接口），
+然后加载该类，该类创建后一般会调用一个init方法，通过该类parse方法来解析对应的标签
+
+
+
 
 各BeanPostProcessor处理bean的流程
 1.InstantiationAwareBeanPostProcessor（产生代理或为bean设置属性，此bean有构造之前构造之后，初始化前初始化后各种方法）
 （此步在bean被new之前或之后，但一定是在被初始化之前，其它在bean被new之后）
 2.MergedBeanDefinitionPostProcessor（类似处理Autowired）
 3.BeanPostProcessor
+
+
+    后置处理方法名称 				           何时调用该方法
+postProcessBeforeInstantiation   	     在Bean实例化之前调用
+
+postProcessAfterInstantiation 		     在Bean实例化之后调用
+
+postProcessBeforeInitialization  	     在Bean初始化前调用
+
+postProcessAfterInitialization  	     在Bean初始化后调用
+
+
 
 init-method和afterPropertiesSet 都是在初始化bead时执行，执行顺序是 afterPropertiesSet
 先执行，而 init-method 后执行。

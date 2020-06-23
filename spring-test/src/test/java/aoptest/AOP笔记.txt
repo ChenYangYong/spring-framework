@@ -1,4 +1,10 @@
 spring在解析切面时，会将切面解析成一个PointcutAdvisor接口的实现类
-PointcutAdvisor中包含一个Pointcut和Advice实例
-Pointcut代表切入点的逻辑
-Advice代表要做的事情
+PointcutAdvisor中包含一个Pointcut和一个Advice的实例
+Pointcut代表切入点的逻辑,如切入表达式，Pointcut中包含MethodMatcher，最终都是调用MethodMatcher来判断方法是否满足切入点逻辑
+    MethodMatcher中最终是调用SignaturePattern.matches方法来判断的，SignaturePattern包含表达式的返回类型、方法名、方法入参等信息，
+    最终通过这些信息与要拦截的方法一一匹配判断是否要切入的，SignaturePattern.matchesExactlyMethod
+Advice代表增强方法处理逻辑
+
+execution()是最常用的切点函数，其语法如下所示：
+execution(<修饰符模式>? <返回类型模式> <方法名模式>(<参数模式>) <异常模式>?)
+除了返回类型模式、方法名模式和参数模式外，其它项都是可选的。
