@@ -11,6 +11,7 @@ public class AopMain {
 		System.out.println(bean);
 		bean.test("aaaaaaaaa");
 		System.out.println("--------------------------");
+		bean.getTestStr();
 //		UserService service = (UserService)bean;
 //		service.a();
 

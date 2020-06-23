@@ -38,7 +38,7 @@
 		<aop:config proxy-target-class="true" expose-proxy="true">
 			<!-- 配置切点表达式 -->
 			<aop:pointcut  id="pointcut" expression="execution(* aoptest.AopTestBean.*(..))"></aop:pointcut>
-			<aop:advisor id="advisor" advice-ref="advisorTest"  pointcut="execution(public void aoptest.AopTestBean.test(String) throws Exception)" order="1"/>
+			<aop:advisor id="advisor" advice-ref="advisorTest"  pointcut="execution(public void aoptest.AopTestBean.test(String))" order="1"/>
 			<!-- 配置切面通知 -->
 			<aop:aspect id="aspect" ref="aopXmlTest" order="1">
 				<!--前置通知  -->
