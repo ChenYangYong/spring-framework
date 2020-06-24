@@ -1,25 +1,84 @@
 package yancy;
-
+import java.math.BigDecimal;
 import java.util.*;
 
 public class TestLeetCode {
 	public static void main(String[] args) {
-//		String s = "abceabcabcd";
-//		System.out.println(s.indexOf('a'));
-//		int pos0 = s.indexOf('a');
-//		System.out.println(s.substring(0,pos0+1));
-//		int pos1 = s.indexOf('a',pos0+1);
-//		System.out.println(pos1);
-//		System.out.println(s.substring(0,pos1+1));
-//		int pos2 = s.indexOf('a',pos1+1);
-//		System.out.println(pos2);
-//		System.out.println(s.substring(0,pos2+1));
-//		int pos3 = s.indexOf('a',pos2+1);
-//		System.out.println(pos3);
-		TestLeetCode leetCode = new TestLeetCode();
-		System.out.println(leetCode.convert("LEETCODEISHIRING",3));
-		System.out.println(leetCode.convert("LEETCODEISHIRING",4));
 
+		TestLeetCode leetCode = new TestLeetCode();
+		System.out.println(leetCode.myAtoi("words and 987"));
+		System.out.println(leetCode.myAtoi("4193 with words"));
+		System.out.println(leetCode.myAtoi("   -42"));
+		System.out.println(leetCode.myAtoi("3.14159"));
+		System.out.println(leetCode.myAtoi("+-2"));
+		System.out.println(leetCode.myAtoi("+0a2"));
+		System.out.println(leetCode.myAtoi("9223372036854775808"));
+		System.out.println(leetCode.myAtoi(" b11228552307"));
+	}
+	public int myAtoi(String str) {
+		Long result = 0l;
+		if(str!=null && str.length()>0){
+			int multiplier = 1;
+			boolean hasFirstNum = false;
+			for(int i=0,len=str.length();i<len;i++){
+				Character c = str.charAt(i);
+				boolean isNum = Character.isDigit(c);
+				if(!(isNum || c=='-'  || c==' '  || c=='+')){
+					break;
+				}
+				//找到第一个数字符号
+				if(!hasFirstNum && (c=='-' || c=='+'  || isNum)){
+					hasFirstNum = true;
+					if(c=='-'){
+						multiplier = -1;
+					}
+					if(!isNum){
+						continue;
+					}
+
+				}
+				if(!isNum){
+					if(hasFirstNum){
+						break;
+					}else{
+						continue;
+					}
+				}
+				result = result*10+Integer.valueOf(c.toString())*multiplier;
+				if(result<Integer.MIN_VALUE || result>Integer.MAX_VALUE){
+					if(result<Integer.MIN_VALUE){
+						result = Integer.MIN_VALUE*1l;
+					}
+					if(result>Integer.MAX_VALUE){
+						result = Integer.MAX_VALUE*1l;
+					}
+					break;
+				}
+			}
+		}
+		return  result.intValue();
+	}
+	public int reverse(int x) {
+		Long rev = 0l;
+		//方案一  info: 解答成功: //	执行耗时:2 ms,击败了39.45% 的Java用户 //	内存消耗:37.2 MB,击败了5.33% 的Java用户 (3 minutes ago)
+//		while (x!=0){
+//			//余数
+//			int remainder = x%10;
+//			x = x/10;
+//			rev = rev*10 + remainder;
+//		}
+//		if(rev>Integer.MAX_VALUE || rev<Integer.MIN_VALUE){
+//			rev = 0l;
+//		}
+		//方案二
+		StringBuilder sb = new StringBuilder();
+		sb.append(x);
+		sb.reverse();
+		rev = Long.parseLong(sb.toString().replaceAll("-",""))*(x>=0?1:-1);
+		if(rev>Integer.MAX_VALUE || rev<Integer.MIN_VALUE){
+			rev = 0l;
+		}
+		return rev.intValue();
 	}
 	public String convert(String s, int numRows) {
 		//解题思路:旋转z每L=(numRows+(numRows-2))个字符形成一个轮回
@@ -80,14 +139,20 @@ public class TestLeetCode {
 		return longest;
 	}
 	public double findMedianSortedArrays(int[] nums1, int[] nums2) {
-		int[] arr = new int[nums1.length + nums2.length];
-		System.arraycopy(nums1,0,arr,0,nums1.length);
-		System.arraycopy(nums2,0,arr,nums1.length,nums2.length);
-		Arrays.sort(arr);
-//		Arrays.sort(arr,Collections.reverseOrder());//倒序排列
-		boolean isOdd = arr.length%2>0;
-		int half = arr.length/2;
-		return (arr[half]+arr[isOdd?half:half-1])/2.0;
+		//方案一
+//		int[] arr = new int[nums1.length + nums2.length];
+//		System.arraycopy(nums1,0,arr,0,nums1.length);
+//		System.arraycopy(nums2,0,arr,nums1.length,nums2.length);
+//		Arrays.sort(arr);
+////		Arrays.sort(arr,Collections.reverseOrder());//倒序排列
+//		boolean isOdd = arr.length%2>0;
+//		int half = arr.length/2;
+//		return (arr[half]+arr[isOdd?half:half-1])/2.0;
+
+		//方案二
+		//思路：找中位数的可以确定为找位置k的数，在将两个数组中k/2处值较小的数组中的前k/2个数都去掉
+		//此时为寻找第剩下两个数组中位置为k-k/2的数，递归寻找，直到k=1
+		return 0;
 	}
 	public int lengthOfLongestSubstring(String s) {
 		if(s==null || s.length()==0){
