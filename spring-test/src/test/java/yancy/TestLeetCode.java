@@ -4,16 +4,28 @@ import java.util.*;
 
 public class TestLeetCode {
 	public static void main(String[] args) {
+		BigDecimal decimal = new BigDecimal("9999999999999999999999");
+		System.out.println(decimal.intValue());
 
-		TestLeetCode leetCode = new TestLeetCode();
-		System.out.println(leetCode.myAtoi("words and 987"));
-		System.out.println(leetCode.myAtoi("4193 with words"));
-		System.out.println(leetCode.myAtoi("   -42"));
-		System.out.println(leetCode.myAtoi("3.14159"));
-		System.out.println(leetCode.myAtoi("+-2"));
-		System.out.println(leetCode.myAtoi("+0a2"));
-		System.out.println(leetCode.myAtoi("9223372036854775808"));
-		System.out.println(leetCode.myAtoi(" b11228552307"));
+//		TestLeetCode leetCode = new TestLeetCode();
+//		int[] nums1 = new int[]{1,3};
+//		int[] nums2 = new int[]{2};
+//		System.out.println(leetCode.findMedianSortedArrays(nums1,nums2));
+	}
+	public boolean isPalindrome(int x) {
+		if(x<0){
+			return false;
+		}
+		int origin = x;
+		int reverse = 0;
+		while (x!=0){
+			reverse = reverse*10 + x%10;
+			x = x/10;
+		}
+		if(reverse==origin){
+			return true;
+		}
+		return false;
 	}
 	public int myAtoi(String str) {
 		Long result = 0l;
@@ -152,8 +164,42 @@ public class TestLeetCode {
 		//方案二
 		//思路：找中位数的可以确定为找位置k的数，在将两个数组中k/2处值较小的数组中的前k/2个数都去掉
 		//此时为寻找第剩下两个数组中位置为k-k/2的数，递归寻找，直到k=1
-		return 0;
+		//由于不确定两个数组之和是偶数还是奇数，故求两个k，中位数为两数和的商
+		int len1 = nums1.length;
+		int len2 = nums2.length;
+		//第一个中位数的编号 不按下标来
+		int left = (len1 + len2 + 1)/2;
+		//第二个中位数的编号
+		int right = (len1 + len2 + 2)/2;
+		return (getTheMedian(nums1,0,nums2,0,left)+
+		getTheMedian(nums1,0,nums2,0,right))/2.0;
 	}
+	private int getTheMedian(int[] num1,int start1,int[] num2,int start2,int medianNum){
+		int len1 = num1.length - start1;
+		int len2 = num2.length - start2;
+		//让 len1小于len2，确保最先空的数组是num1
+		if(len1>len2){
+			return getTheMedian(num2,start2,num1,start1,medianNum);
+		}
+		//如果num1真的空了，此时就能确定中位数在num2中的位置了
+		if(len1==0){
+			return num2[start2+medianNum-1];
+		}
+		//中位数的位置已为1，此时中位数为两个数组中当前位置值小的那个
+		if(medianNum==1){
+			return Math.min(num1[start1],num2[start2]);
+		}
+		//获取两个数组中应当比较值的位置
+		int i = start1 + Math.min(num1.length,medianNum/2)-1;
+		int j = start2 + Math.min(num2.length,medianNum/2)-1;
+		//哪个数组位置值小，就截取哪个数组
+		if(num1[i]>num2[j]){
+			//此轮循环中j已被使用， 故踢除数的个数是： j-start2+1
+			return getTheMedian(num1,start1,num2,j+1,medianNum-(j-start2+1));
+		}else{
+			return getTheMedian(num1,i+1,num2,start2,medianNum-(i-start1+1));
+		}
+	};
 	public int lengthOfLongestSubstring(String s) {
 		if(s==null || s.length()==0){
 			return 0;

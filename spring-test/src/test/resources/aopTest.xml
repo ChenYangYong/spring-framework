@@ -25,7 +25,7 @@
 		<!--<context:component-scan base-package="aoptest"/>-->
 		<!--<context:property-placeholder location="classpath:application.properties" />-->
 		<!--<aop:aspectj-autoproxy proxy-target-class="false" expose-proxy="false"/>-->
-<!--		<context:load-time-weaver aspectj-weaving="off" />-->
+		<context:load-time-weaver aspectj-weaving="on" />
 		<!--<bean class="aoptest.AspectJTest"></bean>-->
 		<bean id="proxyObjectTest" class="aoptest.AopTestBean"  ></bean>
 <!--		<bean id="userService" class="aoptest.impl.UserServiceImpl"  ></bean>-->

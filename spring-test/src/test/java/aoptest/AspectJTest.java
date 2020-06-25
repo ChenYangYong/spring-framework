@@ -59,4 +59,8 @@ public class AspectJTest {
 	 */
 	@DeclareParents(value = "aoptest.AopTestBean", defaultImpl = UserServiceImpl.class)
 	public UserService userService;
+
+	public void noAdvice(JoinPoint joinPoint){
+		System.out.println("noAdvice------"+this);
+	}
 }
