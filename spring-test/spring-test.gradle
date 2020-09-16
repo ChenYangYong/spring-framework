@@ -9,6 +9,9 @@ dependencyManagement {
 }
 
 dependencies {
+	compile("org.aspectj:aspectjweaver:1.8.13")
+	compile("mysql:mysql-connector-java:5.1.46")
+	compile("com.alibaba:druid:1.1.8")
 	compile(project(":spring-core"))
 	optional(project(":spring-aop"))
 	optional(project(":spring-beans"))
