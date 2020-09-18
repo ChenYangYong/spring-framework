@@ -1,8 +1,8 @@
 package tulling.mybatis.v4.config;
 
 import com.alibaba.druid.pool.DruidDataSource;
-import com.mybatis.v4.entity.Dept;
-import com.mybatis.v4.entity.Employee;
+import tulling.mybatis.v4.entity.Dept;
+import tulling.mybatis.v4.entity.Employee;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.context.annotation.Bean;

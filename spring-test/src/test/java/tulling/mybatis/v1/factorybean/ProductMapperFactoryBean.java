@@ -1,9 +1,9 @@
 package tulling.mybatis.v1.factorybean;
 
-import com.mybatis.v1.anno.TulingSelect;
-import com.mybatis.v1.dao.ProductMapper;
-import com.mybatis.v1.entity.AccountInfo;
-import com.mybatis.v1.entity.ProductInfo;
+import tulling.mybatis.v1.anno.TulingSelect;
+import tulling.mybatis.v1.dao.ProductMapper;
+import tulling.mybatis.v1.entity.AccountInfo;
+import tulling.mybatis.v1.entity.ProductInfo;
 import org.springframework.beans.factory.FactoryBean;
 import org.springframework.lang.Nullable;
 

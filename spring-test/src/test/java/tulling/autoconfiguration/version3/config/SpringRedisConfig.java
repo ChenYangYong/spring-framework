@@ -1,6 +1,6 @@
 package tulling.autoconfiguration.version3.config;
 
-import com.tuling.version3.support.RedisCfgProperties;
+import tulling.autoconfiguration.version3.support.RedisCfgProperties;
 import org.springframework.context.annotation.*;
 import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;

@@ -11,8 +11,8 @@ public class MainStarter {
 
 		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(MainConfig.class);
 
-		Person person = (Person) context.getBean("person");
-
+		Object person = context.getBean("person");
+//
 		System.out.println("person:"+person);
 	}
 }

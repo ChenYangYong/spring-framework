@@ -1,7 +1,7 @@
 package tulling.boot;
 
-import com.tuling.config.TulingSpringbootConfig;
-import com.tuling.web.TulingSpringBootApplication;
+import tulling.boot.config.TulingSpringbootConfig;
+import tulling.boot.web.TulingSpringBootApplication;
 import org.apache.catalina.LifecycleException;
 
 import javax.servlet.ServletException;

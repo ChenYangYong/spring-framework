@@ -1,6 +1,6 @@
 package tulling.mybatis.v4.mapper;
 
-import com.mybatis.v4.entity.Employee;
+import tulling.mybatis.v4.entity.Employee;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Options;
 import org.apache.ibatis.annotations.Select;

@@ -1,9 +1,10 @@
 package tulling.webmvc.starter;
 
-import com.tuling.config.RootConfig;
-import com.tuling.config.WebAppConfig;
+import tulling.webmvc.config.RootConfig;
+import tulling.webmvc.config.WebAppConfig;
 import org.springframework.core.annotation.Order;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
+import tulling.webmvc.config.WebAppConfig;
 
 /**
  * 在tomcat源码中:

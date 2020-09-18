@@ -1,7 +1,7 @@
 package tulling.mybatis.v1.dao;
 
-import com.mybatis.v1.anno.TulingSelect;
-import com.mybatis.v1.entity.AccountInfo;
+import tulling.mybatis.v1.anno.TulingSelect;
+import tulling.mybatis.v1.entity.AccountInfo;
 import org.springframework.stereotype.Component;
 
 /**

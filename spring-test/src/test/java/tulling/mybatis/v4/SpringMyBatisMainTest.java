@@ -1,9 +1,9 @@
 package tulling.mybatis.v4;
 
-import com.mybatis.v4.config.SpringMyBatisConfig;
-import com.mybatis.v4.entity.Employee;
-import com.mybatis.v4.mapper.DeptMapper;
-import com.mybatis.v4.service.EmpServiceImpl;
+import tulling.mybatis.v4.config.SpringMyBatisConfig;
+import tulling.mybatis.v4.entity.Employee;
+import tulling.mybatis.v4.mapper.DeptMapper;
+import tulling.mybatis.v4.service.EmpServiceImpl;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 /**

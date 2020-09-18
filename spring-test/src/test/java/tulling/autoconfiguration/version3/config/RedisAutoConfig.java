@@ -1,6 +1,6 @@
 package tulling.autoconfiguration.version3.config;
 
-import com.tuling.version3.compent.TulingEnableAutoConfig;
+import tulling.autoconfiguration.version3.compent.TulingEnableAutoConfig;
 import org.springframework.context.annotation.Configuration;
 
 /**

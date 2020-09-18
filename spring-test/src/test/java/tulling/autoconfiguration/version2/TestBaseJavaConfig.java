@@ -1,12 +1,13 @@
 package tulling.autoconfiguration.version2;
 
-import com.tuling.version1.Employee;
-import com.tuling.version2.config.SpringRedisonfig;
+import tulling.autoconfiguration.version1.Employee;
+import tulling.autoconfiguration.version2.config.SpringRedisonfig;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Controller;
+import tulling.autoconfiguration.version2.config.SpringRedisonfig;
 
 /**
  * Created by smlz on 2019/8/31.

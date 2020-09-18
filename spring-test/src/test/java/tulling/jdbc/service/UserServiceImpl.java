@@ -1,7 +1,7 @@
 package tulling.jdbc.service;
 
-import com.tuling.dao.AccountInfoDao;
-import com.tuling.dao.UserInfoDao;
+import tulling.jdbc.dao.AccountInfoDao;
+import tulling.jdbc.dao.UserInfoDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

@@ -1,7 +1,7 @@
 package tulling.mybatis.v2.compent;
 
-import com.mybatis.v2.anno.EnableMapperScanner;
-import com.mybatis.v2.factorybean.TulingMapperFactorybean;
+import tulling.mybatis.v2.anno.EnableMapperScanner;
+import tulling.mybatis.v2.factorybean.TulingMapperFactorybean;
 import org.springframework.beans.factory.config.BeanDefinitionHolder;
 import org.springframework.beans.factory.support.BeanDefinitionRegistry;
 import org.springframework.beans.factory.support.GenericBeanDefinition;

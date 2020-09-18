@@ -1,6 +1,6 @@
 package tulling.mybatis.v3.compent;
 
-import com.mybatis.v2.factorybean.TulingMapperFactorybean;
+import tulling.mybatis.v2.factorybean.TulingMapperFactorybean;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.BeanDefinitionHolder;
 import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
@@ -57,7 +57,7 @@ public class TulingMapperRegister implements BeanDefinitionRegistryPostProcessor
 	}
 
 	@Override
-	public void postProcessBeanFactory(ConfigurableListableBeanFactory beanFactory) throws BeansException, ClassNotFoundException {
+	public void postProcessBeanFactory(ConfigurableListableBeanFactory beanFactory) throws BeansException {
 
 	}
 }

@@ -1,6 +1,6 @@
 package tulling.webmvc.config;
 
-import com.tuling.interceptor.TulingInterceptor;
+import tulling.webmvc.interceptor.TulingInterceptor;
 import org.springframework.context.annotation.*;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;

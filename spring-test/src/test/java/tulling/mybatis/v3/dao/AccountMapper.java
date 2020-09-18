@@ -1,7 +1,7 @@
 package tulling.mybatis.v3.dao;
 
-import com.mybatis.v2.anno.TulingSelect;
-import com.mybatis.v3.entity.AccountInfo;
+import tulling.mybatis.v2.anno.TulingSelect;
+import tulling.mybatis.v3.entity.AccountInfo;
 
 /**
  * [来个全套]

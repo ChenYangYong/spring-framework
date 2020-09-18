@@ -1,9 +1,9 @@
 package tulling.jdbc;
 
 
-import com.tuling.config.MainConfig;
-import com.tuling.dao.AccountInfoDao;
-import com.tuling.service.UserServiceImpl;
+import tulling.jdbc.config.MainConfig;
+import tulling.jdbc.dao.AccountInfoDao;
+import tulling.jdbc.service.UserServiceImpl;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 /**

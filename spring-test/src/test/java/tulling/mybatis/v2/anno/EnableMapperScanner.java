@@ -1,6 +1,6 @@
 package tulling.mybatis.v2.anno;
 
-import com.mybatis.v2.compent.TulingImportBeanDefinitionRegister;
+import tulling.mybatis.v2.compent.TulingImportBeanDefinitionRegister;
 import org.springframework.context.annotation.Import;
 
 import java.lang.annotation.ElementType;

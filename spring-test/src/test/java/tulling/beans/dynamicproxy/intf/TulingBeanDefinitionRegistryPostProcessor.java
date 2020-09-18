@@ -17,7 +17,7 @@ public class TulingBeanDefinitionRegistryPostProcessor implements BeanDefinition
 	}
 
 	@Override
-	public void postProcessBeanFactory(ConfigurableListableBeanFactory beanFactory) throws BeansException, ClassNotFoundException {
+	public void postProcessBeanFactory(ConfigurableListableBeanFactory beanFactory) throws BeansException {
 		System.out.println("postProcessBeanFactory");
 	}
 }

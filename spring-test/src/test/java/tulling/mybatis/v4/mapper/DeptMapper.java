@@ -1,7 +1,7 @@
 package tulling.mybatis.v4.mapper;
 
 
-import com.mybatis.v4.entity.Dept;
+import tulling.mybatis.v4.entity.Dept;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;

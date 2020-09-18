@@ -1,7 +1,7 @@
 package tulling.autoconfiguration.version3;
 
-import com.tuling.version3.config.RedisAutoConfig;
-import com.tuling.version3.support.RedisCfgProperties;
+import tulling.autoconfiguration.version3.config.RedisAutoConfig;
+import tulling.autoconfiguration.version3.support.RedisCfgProperties;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.data.redis.core.RedisTemplate;

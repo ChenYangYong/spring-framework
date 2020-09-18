@@ -1,7 +1,7 @@
 package tulling.beans.setInject;
 
 
-import com.tuling.setInject.TulingImportBeanDefinitionRegister;
+import tulling.beans.setInject.TulingImportBeanDefinitionRegister;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;

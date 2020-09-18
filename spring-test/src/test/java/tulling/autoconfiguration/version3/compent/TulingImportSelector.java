@@ -1,6 +1,6 @@
 package tulling.autoconfiguration.version3.compent;
 
-import com.tuling.version3.util.TulingAutoCfgReader;
+import tulling.autoconfiguration.version3.util.TulingAutoCfgReader;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.ImportSelector;
 import org.springframework.core.io.support.SpringFactoriesLoader;

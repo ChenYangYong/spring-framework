@@ -1,6 +1,6 @@
 package tulling.jdbc.dao;
 
-import com.tuling.entity.UserInfo;
+import tulling.jdbc.entity.UserInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;

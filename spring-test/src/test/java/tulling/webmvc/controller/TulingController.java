@@ -1,7 +1,7 @@
 package tulling.webmvc.controller;
 
-import com.tuling.initbinder.User;
-import com.tuling.service.TulingServiceImpl;
+import tulling.webmvc.initbinder.User;
+import tulling.webmvc.service.TulingServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.propertyeditors.CustomDateEditor;

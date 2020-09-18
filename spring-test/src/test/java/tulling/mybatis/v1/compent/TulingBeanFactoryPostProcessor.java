@@ -1,8 +1,8 @@
 package tulling.mybatis.v1.compent;
 
-import com.mybatis.v1.dao.ProductMapper;
-import com.mybatis.v1.factorybean.AccountMapperFactoryBean;
-import com.mybatis.v1.factorybean.ProductMapperFactoryBean;
+import tulling.mybatis.v1.dao.ProductMapper;
+import tulling.mybatis.v1.factorybean.AccountMapperFactoryBean;
+import tulling.mybatis.v1.factorybean.ProductMapperFactoryBean;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.BeanFactoryPostProcessor;
 import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
@@ -20,7 +20,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class TulingBeanFactoryPostProcessor implements BeanFactoryPostProcessor {
 	@Override
-	public void postProcessBeanFactory(ConfigurableListableBeanFactory beanFactory) throws BeansException, ClassNotFoundException {
+	public void postProcessBeanFactory(ConfigurableListableBeanFactory beanFactory) throws BeansException{
 		GenericBeanDefinition accountMapperBd= (GenericBeanDefinition) beanFactory.getBeanDefinition("accountMapper");
 		System.out.println("accountMapperBd:"+accountMapperBd.toString());
 		accountMapperBd.setBeanClass(AccountMapperFactoryBean.class);

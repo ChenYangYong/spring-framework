@@ -1,6 +1,6 @@
 package tulling.webmvc.controller;
 
-import com.tuling.initbinder.User;
+import tulling.webmvc.initbinder.User;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;

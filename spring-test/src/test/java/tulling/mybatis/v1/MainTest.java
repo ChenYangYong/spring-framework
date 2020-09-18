@@ -1,11 +1,10 @@
 package tulling.mybatis.v1;
 
-import com.mybatis.v1.config.SpringMybatisConfig;
-import com.mybatis.v1.dao.AccountMapper;
-import com.mybatis.v1.dao.ProductMapper;
-import com.mybatis.v1.entity.AccountInfo;
-import com.mybatis.v1.entity.ProductInfo;
-import com.mybatis.v1.service.AccountServiceImpl;
+import tulling.mybatis.v1.config.SpringMybatisConfig;
+import tulling.mybatis.v1.dao.AccountMapper;
+import tulling.mybatis.v1.dao.ProductMapper;
+import tulling.mybatis.v1.entity.AccountInfo;
+import tulling.mybatis.v1.entity.ProductInfo;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.ClassPathBeanDefinitionScanner;
 

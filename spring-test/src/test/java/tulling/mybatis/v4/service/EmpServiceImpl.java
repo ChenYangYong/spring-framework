@@ -1,8 +1,8 @@
 package tulling.mybatis.v4.service;
 
 
-import com.mybatis.v4.entity.Employee;
-import com.mybatis.v4.mapper.EmployeeMapper;
+import tulling.mybatis.v4.entity.Employee;
+import tulling.mybatis.v4.mapper.EmployeeMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

@@ -1,6 +1,6 @@
 package tulling.boot.web;
 
-import com.tuling.config.TulingSpringbootConfig;
+import tulling.boot.config.TulingSpringbootConfig;
 import org.springframework.web.WebApplicationInitializer;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
 import org.springframework.web.servlet.DispatcherServlet;

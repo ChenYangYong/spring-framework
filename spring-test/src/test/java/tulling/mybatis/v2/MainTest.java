@@ -1,8 +1,8 @@
 package tulling.mybatis.v2;
 
 
-import com.mybatis.v2.config.SpringMybatisConfig;
-import com.mybatis.v2.dao.ProductMapper;
+import tulling.mybatis.v2.config.SpringMybatisConfig;
+import tulling.mybatis.v2.dao.ProductMapper;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 /**

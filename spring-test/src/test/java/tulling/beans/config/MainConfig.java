@@ -1,6 +1,6 @@
 package tulling.beans.config;
 
-import com.tuling.compent.TulingDataSource;
+import tulling.beans.compent.TulingDataSource;
 import org.springframework.context.annotation.*;
 
 /**

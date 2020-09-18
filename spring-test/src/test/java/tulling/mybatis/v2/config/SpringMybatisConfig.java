@@ -1,6 +1,6 @@
 package tulling.mybatis.v2.config;
 
-import com.mybatis.v2.anno.EnableMapperScanner;
+import tulling.mybatis.v2.anno.EnableMapperScanner;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
