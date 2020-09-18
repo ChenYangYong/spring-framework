@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Configuration;
  * Created by smlz on 2019/8/15.
  */
 @Configuration
-@ComponentScan(basePackages = {"com.tuling.iocbeanlifecicle"})
+@ComponentScan(basePackages = {"tulling.beans.iocbeanlifecicle"})
 public class MainConfig {
 
 	@Bean(initMethod = "initPerson")

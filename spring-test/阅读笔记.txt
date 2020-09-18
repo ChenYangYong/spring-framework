@@ -43,3 +43,23 @@ cglib：
 以g方法为例：
 一个是@Override的g方法，
 一个是CGLIB$g$0（相当于目标类的g方法，该方法中直接调用super.g()方法）
+
+三级缓存作用（主要是为了解决循环依赖）：
+    一级singletonObjects：用于存放完全初始化好的 bean，从该缓存中取出的 bean 可以直接使用，
+             是有DefaultSingletonBeanRegistry.addSingleton的方法放入的，放入时会清除二级缓存中值
+             DefaultSingletonBeanRegistry的getSingleton(beanName,singletonFactory)会调用AbstractAutowireCapableBeanFactory的createBean方法
+             获取对象，获取到后调用addSingleton存储到一级缓存
+    二级earlySingletonObjects：提前曝光的单例对象的cache，存放原始的 bean 对象（尚未填充属性），用于解决循环依赖
+             是由DefaultSingletonBeanRegistry.getSingleton(beanName,allowEarlyReference)的方法放入的，从 三级缓存获取后会立马放入二级缓存，
+             并从三级缓存中移除
+    三级singletonFactories：单例对象工厂的cache，存放 bean 工厂对象（即ObjectFactory对象），用于解决循环依赖，
+             是由AbstractAutowireCapableBeanFactory.doCreateBean方法放入的，此时的对象已经被创建，用ObjectFactory
+             包裹后放入三级缓存
+
+    AbstractBeanFactory.getBean-》doGetBean-》getSingleton(beanName)-》getSingleton(beanName,allowEarlyReference)放入二级缓存
+              doGetBean-》getSingleton(beanName,singletonFactory)-》createBean-》doCreateBean
+
+    一个对象A如果有循环依赖B，在创建过程中，从genBean会走到doCreateBean方法，再进入bean A的属性赋值，此时会去创建A依赖的bean B
+    ，此时A已经被放入了三级缓存，在创建B走到属性赋值时，会去调用genBean获取A，此时走到getSingleton(beanName)方法，在进入
+    getSingleton(beanName,allowEarlyReference)方法，将A从三级缓存移到二级缓存，并返回A赋值给B，然后直到B创建完成，B创建完成
+    后，会继续走A的创建，此时会将B赋值给A的属性，然后将A放入一级缓存，并从二级缓存中清除，自此，对象A和B都创建完成
