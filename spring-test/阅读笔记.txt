@@ -1,5 +1,8 @@
 https://blog.csdn.net/jy02268879/category_9286071.html
 
+spring 脑图：
+https://www.processon.com/view/link/5f5075c763768959e2d109df#map
+
 xml解析：
 在解析到自定义标签（含其它组件标签）时，会使用到DefaultNamespaceHandlerResolver类，
 该类默认加载所有jar包中META-INF/spring.handlers文件，解析到标签对应的类名（实现了NamespaceHandler接口），
