@@ -15,7 +15,10 @@ https://blog.csdn.net/makecontral/article/details/79593732
          var10000 = this.CGLIB$CALLBACK_0;
       }
 
-      if(var10000 != null) {         //调用拦截器
+      if(var10000 != null) {
+         //调用拦截器,此处的拦截器最终CglibAopProxy内部拦截器类DynamicAdvisedInterceptor的intercept方法
+         //intercept方法中最后会调用被代理类即父类的被代理方法，所以同类中方法互相调用时，被调用方法的代理
+         //不会起作用，就是因为最终是父类方法中互相调用了
          var10000.intercept(this, CGLIB$setPerson$0$Method, CGLIB$emptyArgs, CGLIB$setPerson$0$Proxy);
       } else {
          super.setPerson();
@@ -40,7 +43,7 @@ CallbackFilter可以设置某个方法该使用什么样的回调，CallbackFilt
   a.invokeSuper方法会调用子类fast类的invoke方法  fci.f2.invoke(fci.i2, obj, args);
   b.invoke方法会调用父类fast类的invoke方法       fci.f1.invoke(fci.i1, obj, args);
 4.cglib普通的代理是调用invokeSuper方法，入参二是子类实例
-5.aop代理是调用invoke方法，入参是父类的实例
+5.aop代理（CglibAopProxy.DynamicAdvisedInterceptor.intercept）是调用invoke方法，入参是父类的实例
 
 
 MethodProxy实例中包含 父fast类fci.f1，子fast类fci.f2，代理方法索引fci.i1，第二方法索引fci.i2
