@@ -1,6 +1,7 @@
-判断一个方法是否需要事物，主要是通过aop的PointcutAdvisor中的Pointcut来匹配类的
-方法以及类上是否有Transactional注解
-
+判断一个类是否需要生成事物代理，主要是通过aop的PointcutAdvisor中的Pointcut来匹配类的
+方法以及类上是否有Transactional注解，匹配顺序：方法->父类方法->接口方法，类->父类->接口
+该实现方法是BeanFactoryTransactionAttributeSourceAdvisor类中的内部类TransactionAttributeSourcePointcut，
+最终调用AnnotationTransactionAttributeSource.getTransactionAttribute方法来判断的
 
 事务信息与事务属性并不相同，也就是 Transactionlnfo与TransactionAttribute 并不相同，
 Transactionlnfo 中包含 TransactionAttribute 信息，但是，除了 TransactionAttribute 外还有其他事务
@@ -8,6 +9,8 @@ Transactionlnfo 中包含 TransactionAttribute 信息，但是，除了 Transact
 
 TransactionStatus包含ConnectionHolder，ConnectionHolder中包含Connection
 
+生成代理类后，判断方法需不需要事物都是在TransactionAspectSupport.invokeWithinTransaction方法中调用
+TransactionAttributeSource.getTransactionAttribute来判断的
 创建事物信息是通过(TransactionInterceptor extends TransactionAspectSupport).createTransactionIfNecessary方法
 
 
